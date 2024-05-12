@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Details</title>
+<style>
+ body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 3px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #step2,
+    #step3,
+    #step4 {
+        display: none;
+    }
+
+    #submitButton {
+        display: none;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<h1>Patient Details</h1>
+<form id="patientForm" action="/submit" method="post">
+    <div id="step1">
+        <label for="patient_name">Patient Name:</label>
+        <input type="text" id="patient_name" name="patient_name" required><br><br>
+        <button type="button" onclick="nextStep()">Next</button>
+    </div>
+
+    <div id="step2" style="display: none;">
+        <label for="weight">Current Weight:</label>
+        <input type="number" id="weight" name="weight" required><br><br>
+        <label for="smoking_status">Smoking Status:</label>
+        <select id="smoking_status" name="smoking_status" required>
+            <option value="Current smoker">Current smoker</option>
+            <option value="Former smoker">Former smoker</option>
+            <option value="Never smoked">Never smoked</option>
+        </select><br><br>
+        <button type="button" onclick="nextStep()">Next</button>
+</div>
+
+ <div id="step3" style="display: none;">
+        <label for="Nutrition_Diet">Nutrition Diet Status:</label>
+        <select id="Nutrition_Diet" name="Nutrition_Diet" required>
+            <option value="Balanced Diet">Balanced Diet</option>
+            <option value="Low-Card Diet">Low-Card Diet</option>
+            <option value="Mediterranean Diet">Mediterranean Diet</option>
+        </select><br><br>
+        <button type="button" onclick="nextStep()">Next</button>
+</div>
+   
+
+<div id="step4" style="display: none;">
+        <label for="cp">Having Chest Pain currently:</label>
+        <select id="cp" name="cp" required>
+            <option value=0>No</option>
+            <option value=1>Yes</option>
+        </select><br><br>
+	<label for="sleepq">Sleep Quality:</label>
+        <select id="sleepq" name="sleepq" required>
+            <option value='Poor'>No</option>
+            <option value='Good'>Yes</option>
+        </select><br><br>
+        <button type="button" onclick="nextStep()">Next</button>
+</div>
+<div id="step5" style="display: none;">
+        <label for="depression_status">How are you feeling today?</label>
+        <select id="depression_status" name="depression_status">
+            <option value="Feeling Good">Feeling Good</option>
+            <option value="Depressed">Depressed</option>
+        </select>
+	<button type="submit" onclick="nextStep()">Submit</button>
+</div>
+
+<!--<div id="step4" style="display: none;">
+     <input type="submit" value="Submit" id="submitButton" style="display: none;">
+</div> -->
+
+</form>
+
+<script>
+    let currentStep = 1;
+
+    function nextStep() {
+        document.getElementById(`step${currentStep}`).style.display = 'none';
+        currentStep++;
+        document.getElementById(`step${currentStep}`).style.display = 'block';
+       
+    }
+
+ 
+</script>
+</body>
+</html>
